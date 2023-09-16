@@ -225,8 +225,8 @@ form {
 
   & > div {
     position: absolute;
-    top: 0px;
     right: 10px;
+    top: 0px;
     transition: 0.2s;
     cursor: pointer;
 
