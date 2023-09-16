@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -19,6 +19,7 @@
     "eslint": "^8.49.0",
     "gh-pages": "^6.0.0",
     "nuxt": "^3.7.3",
+    "push-dir": "^0.4.1",
     "yup": "^1.2.0"
   },
   "dependencies": {
