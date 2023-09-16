@@ -13,21 +13,19 @@
       ></div>
 
       <div class="wrapper">
-        <ClientOnly>
-          <div v-for="date in dateRange" :key="date" class="date-scale-item">
-            <span class="visible-data">
-              {{ visibleData(date) }}
-            </span>
+        <div v-for="date in dateRange" :key="date" class="date-scale-item">
+          <span class="visible-data">
+            {{ visibleData(date) }}
+          </span>
 
-            <div v-if="visibleData(date)" class="date-line"></div>
+          <div v-if="visibleData(date)" class="date-line"></div>
 
-            <img
-              v-if="currentDate === formatDate(date) && !isLargeScreen"
-              class="mark"
-              :src="mark"
-            />
-          </div>
-        </ClientOnly>
+          <img
+            v-if="currentDate === formatDate(date) && !isLargeScreen"
+            class="mark"
+            :src="mark"
+          />
+        </div>
       </div>
 
       <span class="text-item text-item--1">Ціни раннього бронювання</span>
@@ -36,15 +34,13 @@
 
       <span class="text-item text-item--3">Подорожчання на 15%</span>
 
-      <ClientOnly>
-        <span v-if="!isLargeScreen" class="text-item text-item--4">
-          Можливо квитки вже закінчаться
-        </span>
+      <span v-if="!isLargeScreen" class="text-item text-item--4">
+        Можливо квитки вже закінчаться
+      </span>
 
-        <span v-else class="text-item text-item--4">
-          Квитки <br />вже закінчаться
-        </span>
-      </ClientOnly>
+      <span v-else class="text-item text-item--4">
+        Квитки <br />вже закінчаться
+      </span>
     </div>
   </div>
 </template>
@@ -100,7 +96,7 @@ const currentDate = computed(() => {
 
 const currentDateIndex = computed(() => {
   return dateRange.value.findIndex(
-    (el) => formatDate(el) === currentDate.value,
+    (el) => formatDate(el) === currentDate.value
   );
 });
 
@@ -113,7 +109,7 @@ onMounted(() => {
 
 const visibleData = (date) => {
   const matchingDate = markedDatesList.find(
-    (el) => el.title === formatDate(date),
+    (el) => el.title === formatDate(date)
   );
   return matchingDate ? matchingDate.uaTitle : "";
 };
