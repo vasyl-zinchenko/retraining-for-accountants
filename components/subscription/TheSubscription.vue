@@ -1,19 +1,21 @@
 <template>
-  <div class="subscription container">
-    <h2>
-      ПЕРЕДПЛАТА НА <br />
-      Вищу Бухгалтерську Онлайн-Академію
-    </h2>
-    <p class="text">Оберіть свій тарифний пакет:</p>
+  <ClientOnly>
+    <div class="subscription container">
+      <h2>
+        ПЕРЕДПЛАТА НА <br />
+        Вищу Бухгалтерську Онлайн-Академію
+      </h2>
+      <p class="text">Оберіть свій тарифний пакет:</p>
 
-    <TheTimer v-if="!isLargeScreen" />
-    <div v-if="!isLargeScreen" class="hit-sales">
-      <SubscriptionHitSalesArrows />
-      <p class="hit-sales__text">ХІТ ПРОДАЖУ</p>
-      <SubscriptionHitSalesArrows />
+      <TheTimer v-if="!isLargeScreen" />
+      <div v-if="!isLargeScreen" class="hit-sales">
+        <SubscriptionHitSalesArrows />
+        <p class="hit-sales__text">ХІТ ПРОДАЖУ</p>
+        <SubscriptionHitSalesArrows />
+      </div>
+      <SubscriptionSalesOption />
     </div>
-    <SubscriptionSalesOption />
-  </div>
+  </ClientOnly>
 </template>
 
 <script setup>
