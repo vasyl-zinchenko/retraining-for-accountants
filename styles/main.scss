@@ -1,0 +1,46 @@
+@import "./utils/fonts";
+@import "./utils/vars";
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap");
+
+@font-face {
+  font-family: "e-Ukraine Head";
+  src: url("../styles/fonts/e-Ukraine-Head/e-UkraineHead-Bold.otf");
+}
+
+body {
+  background: $background-color;
+  padding: 40px 0 56px 0;
+
+  @media (min-width: 1024px) {
+    padding: 64px 0 176px 0;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: e-Ukraine Head;
+  color: $black-content-color;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+
+  @media (min-width: 768px) {
+    font-size: 42px;
+  }
+}
+
+.container {
+  padding: 0 16px;
+}
