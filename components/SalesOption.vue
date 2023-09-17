@@ -77,7 +77,7 @@
       </div>
 
       <div class="button">
-        <BaseButton>Оплатити карткою</BaseButton>
+        <UiBaseButton>Оплатити карткою</UiBaseButton>
       </div>
 
       <p class="part-payment">Оплатити частинами</p>

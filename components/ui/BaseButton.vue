@@ -33,7 +33,7 @@
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
-  line-height: 20px; /* 117.648% */
+  line-height: 20px;
   letter-spacing: -0.374px;
 }
 </style>

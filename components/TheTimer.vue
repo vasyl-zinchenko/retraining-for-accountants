@@ -1,26 +1,28 @@
 <template>
-  <div class="timer">
-    <div class="timer__hours">
-      <span>
-        {{ !isTimerStopped ? (hours > 9 ? hours : `0${hours}`) : "00" }} :
-      </span>
-    </div>
+  <ClientOnly>
+    <div class="timer">
+      <div class="timer__hours">
+        <span>
+          {{ !isTimerStopped ? (hours > 9 ? hours : `0${hours}`) : "00" }} :
+        </span>
+      </div>
 
-    <div class="timer__minutes">
-      <span>
-        {{ !isTimerStopped ? (minutes > 9 ? minutes : `0${minutes}`) : "00" }}
-        :
-      </span>
-    </div>
+      <div class="timer__minutes">
+        <span>
+          {{ !isTimerStopped ? (minutes > 9 ? minutes : `0${minutes}`) : "00" }}
+          :
+        </span>
+      </div>
 
-    <div class="timer__seconds">
-      <span v-if="!isTimerStopped">
-        {{ !isTimerStopped ? (seconds > 9 ? seconds : `0${seconds}`) : "00" }}
-      </span>
+      <div class="timer__seconds">
+        <span v-if="!isTimerStopped">
+          {{ !isTimerStopped ? (seconds > 9 ? seconds : `0${seconds}`) : "00" }}
+        </span>
 
-      <span v-else> 00 </span>
+        <span v-else> 00 </span>
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 
 <script setup>
@@ -47,7 +49,7 @@ onMounted(() => {
 function getTimeLeft() {
   const timeDifference = endDate - currentTime.value;
   hours.value = Math.floor(
-    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
   );
   minutes.value = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
   seconds.value = Math.floor((timeDifference % (1000 * 60)) / 1000);
