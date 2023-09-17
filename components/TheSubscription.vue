@@ -1,24 +1,25 @@
 <template>
-  <div class="subscription container">
-    <h2>
-      ПЕРЕДПЛАТА НА <br />
-      Вищу Бухгалтерську Онлайн-Академію
-    </h2>
-    <p class="text">Оберіть свій тарифний пакет:</p>
+  <ClientOnly>
+    <div class="subscription container">
+      <h2>
+        ПЕРЕДПЛАТА НА <br />
+        Вищу Бухгалтерську Онлайн-Академію
+      </h2>
+      <p class="text">Оберіть свій тарифний пакет:</p>
 
-    <TheTimer v-if="!isLargeScreen" />
-    <div v-if="!isLargeScreen" class="hit-sales">
-      <HitSalesArrows />
-      <p class="hit-sales__text">ХІТ ПРОДАЖУ</p>
-      <HitSalesArrows />
+      <TheTimer v-if="!isLargeScreen" />
+      <div v-if="!isLargeScreen" class="hit-sales">
+        <HitSalesArrows />
+        <p class="hit-sales__text">ХІТ ПРОДАЖУ</p>
+        <HitSalesArrows />
+      </div>
+      <SalesOption />
     </div>
-    <SalesOption />
-  </div>
+  </ClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useMediaQuery } from "@vueuse/core";
-import TheTimer from "./TheTimer.vue";
 const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 </script>
 

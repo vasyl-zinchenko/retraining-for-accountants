@@ -14,7 +14,11 @@
 
       <div class="wrapper">
         <ClientOnly>
-          <div v-for="date in dateRange" :key="date" class="date-scale-item">
+          <div
+            v-for="date in dateRange"
+            :key="date.getTime()"
+            class="date-scale-item"
+          >
             <span class="visible-data">
               {{ visibleData(date) }}
             </span>
@@ -49,7 +53,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useMediaQuery } from "@vueuse/core";
 
 import mark from "../public/assets/mark.svg";
@@ -57,7 +61,7 @@ const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 const startDate = new Date("2023-08-10");
 const endDate = new Date("2023-10-03");
 
-const dateScaleLineHeight = ref("");
+const dateScaleLineHeight = ref<string | number>("");
 
 const markedDatesList = [
   { title: "August 21", uaTitle: "21 серпня" },
@@ -80,13 +84,18 @@ const dateRange = computed(() => {
   return dates;
 });
 
-const minDate = new Date(Math.min(...dateRange.value));
-const maxDate = new Date(Math.max(...dateRange.value));
+const minDate = new Date(
+  Math.min(...dateRange.value.map((date) => date.getTime())),
+);
+const maxDate = new Date(
+  Math.max(...dateRange.value.map((date) => date.getTime())),
+);
 
-const formatDate = (date) => {
-  const options = { month: "long", day: "numeric" };
+const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric" };
   return date.toLocaleDateString(undefined, options);
 };
+
 const currentDate = computed(() => {
   const currentDate = new Date();
   if (currentDate > maxDate) {
@@ -111,7 +120,7 @@ onMounted(() => {
   dateScaleLineHeight.value = (100 * currentIndex) / dateRange.value.length;
 });
 
-const visibleData = (date) => {
+const visibleData = (date: Date) => {
   const matchingDate = markedDatesList.find(
     (el) => el.title === formatDate(date),
   );

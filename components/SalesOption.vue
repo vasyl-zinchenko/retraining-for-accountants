@@ -143,7 +143,7 @@
   <div v-if="isLargeScreen" class="benefits">
     <div
       v-for="item in options[0].includes"
-      :key="item"
+      :key="item.id"
       class="benefits__items"
     >
       <p class="content">
@@ -232,11 +232,12 @@
   </p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useMediaQuery } from "@vueuse/core";
+import type { Option } from "@/types/main";
 const isLargeScreen = useMediaQuery("(min-width: 1024px)");
 
-const options = ref([
+const options = ref<Option[]>([
   {
     id: 1,
     title: "суперпрофесіонал",

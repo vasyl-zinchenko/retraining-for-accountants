@@ -25,7 +25,7 @@
   </ClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
 
 const endDate = new Date("2023-10-03 17:00:00").getTime();

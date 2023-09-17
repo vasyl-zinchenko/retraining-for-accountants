@@ -58,10 +58,11 @@ import slide2 from "../public/assets/slide2.jpg";
 import slide3 from "../public/assets/slide3.jpg";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Slide } from "~/types/main";
 
 const isLargeScreen = useMediaQuery("(min-width: 936px)");
 
-const slides = [
+const slides = reactive<Slide[]>([
   {
     id: 1,
     url: slide1,
@@ -77,7 +78,7 @@ const slides = [
     url: slide3,
     alt: "slider3",
   },
-];
+]);
 
 const swiperRef = ref<any>(null);
 
