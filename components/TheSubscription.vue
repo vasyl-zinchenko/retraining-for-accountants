@@ -8,11 +8,11 @@
 
     <TheTimer v-if="!isLargeScreen" />
     <div v-if="!isLargeScreen" class="hit-sales">
-      <SubscriptionHitSalesArrows />
+      <HitSalesArrows />
       <p class="hit-sales__text">ХІТ ПРОДАЖУ</p>
-      <SubscriptionHitSalesArrows />
+      <HitSalesArrows />
     </div>
-    <SubscriptionSalesOption />
+    <SalesOption />
   </div>
 </template>
 

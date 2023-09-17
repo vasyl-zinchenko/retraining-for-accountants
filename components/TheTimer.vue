@@ -1,31 +1,32 @@
 <template>
-  <div class="timer">
-    <div class="timer__hours">
-      <span>
-        {{ !isTimerStopped ? (hours > 9 ? hours : `0${hours}`) : "00" }} :
-      </span>
-    </div>
+  <ClientOnly>
+    <div class="timer">
+      <div class="timer__hours">
+        <span>
+          {{ !isTimerStopped ? (hours > 9 ? hours : `0${hours}`) : "00" }} :
+        </span>
+      </div>
 
-    <div class="timer__minutes">
-      <span>
-        {{ !isTimerStopped ? (minutes > 9 ? minutes : `0${minutes}`) : "00" }}
-        :
-      </span>
-    </div>
+      <div class="timer__minutes">
+        <span>
+          {{ !isTimerStopped ? (minutes > 9 ? minutes : `0${minutes}`) : "00" }}
+          :
+        </span>
+      </div>
 
-    <div class="timer__seconds">
-      <span v-if="!isTimerStopped">
-        {{ !isTimerStopped ? (seconds > 9 ? seconds : `0${seconds}`) : "00" }}
-      </span>
+      <div class="timer__seconds">
+        <span v-if="!isTimerStopped">
+          {{ !isTimerStopped ? (seconds > 9 ? seconds : `0${seconds}`) : "00" }}
+        </span>
 
-      <span v-else> 00 </span>
+        <span v-else> 00 </span>
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 
 <script setup>
 import { ref, watch, onMounted } from "vue";
-import { useInterval } from "@vueuse/core";
 
 const endDate = new Date("2023-10-03 17:00:00").getTime();
 
@@ -35,10 +36,14 @@ const minutes = ref(0);
 const seconds = ref(0);
 const isTimerStopped = ref(false);
 
-const { startInterval, stopInterval } = useInterval(getTimeLeft, 1000);
-
 onMounted(() => {
-  startInterval();
+  const timerInterval = setInterval(() => {
+    currentTime.value = new Date().getTime();
+    if (currentTime.value >= endDate) {
+      isTimerStopped.value = true;
+      clearInterval(timerInterval);
+    }
+  }, 1000);
 });
 
 function getTimeLeft() {
@@ -51,12 +56,10 @@ function getTimeLeft() {
 }
 
 watch(currentTime, () => {
-  if (currentTime.value >= endDate) {
-    isTimerStopped.value = true;
-    stopInterval();
-  }
+  getTimeLeft();
 });
 </script>
+
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 .subscription {

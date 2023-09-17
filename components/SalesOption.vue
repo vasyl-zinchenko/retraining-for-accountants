@@ -1,7 +1,7 @@
 <template>
   <div class="package">
     <section v-if="isLargeScreen" class="timer">
-      <SubscriptionTheTimer />
+      <TheTimer />
 
       <p>(для діючих передплатників додаткова знижка 10%)</p>
     </section>
@@ -77,7 +77,7 @@
       </div>
 
       <div class="button">
-        <UiBaseButton>Оплатити карткою</UiBaseButton>
+        <BaseButton>Оплатити карткою</BaseButton>
       </div>
 
       <p class="part-payment">Оплатити частинами</p>
