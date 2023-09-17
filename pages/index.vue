@@ -1,12 +1,10 @@
 <template>
-  <ClientOnly>
-    <main>
-      <TheTraining />
-      <TheScale />
-      <TheSubscription />
-      <TheForm />
-    </main>
-  </ClientOnly>
+  <main>
+    <TheTraining />
+    <TheScale />
+    <TheSubscription />
+    <TheForm />
+  </main>
 </template>
 
 <script setup lang="ts">
